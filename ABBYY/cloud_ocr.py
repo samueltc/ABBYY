@@ -1,6 +1,7 @@
 import requests
 from lxml import html, etree
 import time
+from io import BytesIO
 
 # http://ocrsdk.com/documentation/apireference/processImage/
 DEFAULT_EXPORT_FORMAT='rtf' 
@@ -105,6 +106,6 @@ class CloudOCR:
 
 		streams = dict()
 		for format, url in urls:
-			data = self.session.get(url)
-			streams[format] = self.session.get(url).content
+			result = self.session.get(url)
+			streams[format] = BytesIO(result.content)
 		return streams
