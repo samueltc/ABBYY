@@ -13,13 +13,13 @@ if __name__=="__main__":
 	parser.add_argument('--inputFilename', help='', required=True)
 	args = parser.parse_args()
 
-	if 'ABBY_APPLICATION_ID' in os.environ.keys():
-		application_id = os.environ['ABBY_APPLICATION_ID']
+	if 'ABBYY_APPLICATION_ID' in os.environ.keys():
+		application_id = os.environ['ABBYY_APPLICATION_ID']
 	else:
 		application_id = args.application_id
 
-	if 'ABBY_PASSWORD' in os.environ.keys():
-		password = os.environ['ABBY_PASSWORD']
+	if 'ABBYY_PASSWORD' in os.environ.keys():
+		password = os.environ['ABBYY_PASSWORD']
 	else:
 		password = args.password
 
@@ -34,6 +34,6 @@ if __name__=="__main__":
 	for format, content in result.iteritems():
 		output_filename = '{name}.{extension}'.format(name='.'.join(input_file.name.split('.')[:-1]), extension=format)
 		with open(output_filename, 'wb') as output_file:
-			output_file.write(content)
+			output_file.write(content.read())
 			output_file.close()
 		 
