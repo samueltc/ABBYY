@@ -57,14 +57,17 @@ class CloudOCR:
 
 	def _postfile(self, method, file, **kwargs):
 		reply = self.session.post('{base_url}/{method}'.format(base_url=self.base_url, method=method), auth=self.auth, params=kwargs, files=file)
-		return self._process_reply(reply.content)
+		return self._process_reply(reply)
 
 	def _get(self, method, **kwargs):
 		reply = self.session.get('{base_url}/{method}'.format(base_url=self.base_url, method=method), auth=self.auth, params=kwargs)
-		return self._process_reply(reply.content)
+		return self._process_reply(reply)
 
 	def _process_reply(self, reply):
-		xml = etree.fromstring(reply)
+		# raise if authentication failed, server error, ...
+		reply.raise_for_status()
+
+		xml = etree.fromstring(reply.content)
 		if xml.xpath('//error/message'):
 			raise Exception(xml.xpath('//error/message')[0].text)
 
