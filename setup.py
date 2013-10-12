@@ -16,5 +16,5 @@ setup(
     url='https://github.com/samueltc/ABBYY',
     license='LICENSE',
     description='ABBYY Cloud OCR API Wrapper.',
-    long_description=open('README.md').read(),
+    long_description=open('README.rst').read(),
 )
