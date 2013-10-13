@@ -14,3 +14,8 @@ EXAMPLE
     >>> result = ocr_engine.process_and_download(file, exportFormat='xml,pdfTextAndImages', language='French')
     >>> result
     {'xml': <_io.BytesIO object at 0x2e2e290>, 'pdfSearchable': <_io.BytesIO object at 0x2e2e2f0>}
+
+INSTALLATION
+============
+
+    $ pip install ABBYY
