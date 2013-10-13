@@ -11,7 +11,7 @@ setup(
     packages=['ABBYY',],
     install_requires = [
         'requests>=1.2.3', 
-        'lxml>=3.2.1'
+        'lxml>=3.1.0'
         ],
     url='https://github.com/samueltc/ABBYY',
     license='LICENSE',
