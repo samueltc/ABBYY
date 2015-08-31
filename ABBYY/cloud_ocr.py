@@ -4,7 +4,7 @@ import time
 from io import BytesIO
 
 # http://ocrsdk.com/documentation/apireference/processImage/
-DEFAULT_EXPORT_FORMAT='rtf' 
+DEFAULT_EXPORT_FORMAT='rtf'
 
 class CloudOCR:
 	"""
@@ -77,13 +77,13 @@ class CloudOCR:
 
 		response = []
 		for element in elements[0]:
-			response.append(dict(zip(element.keys(), element.values())))
+			response.append(dict(list(zip(list(element.keys()), list(element.values())))))
 		return response
 
 	# helper functions
 	def wait_for_task(self, task, delay_between_status_check=1, timeout=300):
 		taskId = task['id']
-		for i in xrange(timeout):
+		for i in range(timeout):
 			task = self.getTaskStatus(taskId=taskId)
 			if task['status'] == 'InProgress' or  task['status'] == 'Queued':
 				delay_between_status_check = int(task['estimatedProcessingTime'])
@@ -95,17 +95,17 @@ class CloudOCR:
 		raise Exception("OCR Timed out")
 
 	def process_and_download(self, file, timeout=300, **kwargs):
-		if 'exportFormat' in kwargs.keys(): 
+		if 'exportFormat' in list(kwargs.keys()):
 			formats = kwargs['exportFormat']
-		else: 
+		else:
 			formats = DEFAULT_EXPORT_FORMAT
 		formats = formats.split(',')
 
 		task = self.processImage(file=file, **kwargs)
 		result = self.wait_for_task(task, timeout=timeout)
 
-		urls_keys = filter(lambda key: key.startswith('resultUrl'), result.keys())
-		urls = zip(formats, map(result.__getitem__, urls_keys))
+		urls_keys = [key for key in list(result.keys()) if key.startswith('resultUrl')]
+		urls = list(zip(formats, list(map(result.__getitem__, urls_keys))))
 
 		streams = dict()
 		for format, url in urls:
