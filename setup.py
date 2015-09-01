@@ -5,7 +5,7 @@ except ImportError:
 
 setup(
     name='ABBYY',
-    version='0.2',
+    version='0.3',
     author='Samuel Cossette',
     author_email='samueltc@gmail.com',
     packages=['ABBYY',],
