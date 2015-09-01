@@ -1,0 +1,8 @@
+v0.3 2015-09-01
+ * Port to Python 3 (Ethan McCreadie)
+
+v0.2 2013-11-02
+ * Minor fixes
+
+v0.1 2013-09-04
+ * Initial release
