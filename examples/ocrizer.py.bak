@@ -31,7 +31,7 @@ if __name__=="__main__":
 	input_file = open(args.inputFilename, 'rb')
 	post_file = {input_file.name: input_file}
 	result = ocr_engine.process_and_download(post_file, **parameters)
-	for format, content in list(result.items()):
+	for format, content in result.items():
 		output_filename = '{name}.{extension}'.format(name='.'.join(input_file.name.split('.')[:-1]), extension=format)
 		with open(output_filename, 'wb') as output_file:
 			output_file.write(content.read())
