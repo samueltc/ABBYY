@@ -25,22 +25,22 @@ class CloudOCR:
 	def processDocument(self, **kwargs):
 		return self._get('processDocument', **kwargs).pop()
 
-	def processBusinessCard(self, **kwargs):
+	def processBusinessCard(self, file, **kwargs):
 		return self._postfile('processBusinessCard', file, **kwargs).pop()
 
-	def processTextField(self, **kwargs):
+	def processTextField(self, file, **kwargs):
 		return self._postfile('processTextField', file, **kwargs).pop()
 
-	def processBarcodeField(self, **kwargs):
+	def processBarcodeField(self, file, **kwargs):
 		return self._postfile('processBarcodeField', file, **kwargs).pop()
 
-	def processCheckmarkField(self, **kwargs):
+	def processCheckmarkField(self, file, **kwargs):
 		return self._postfile('processCheckmarkField', file, **kwargs).pop()
 
 	def processFields(self, **kwargs):
 		return self._get('processFields', **kwargs).pop()
 
-	def processMRZ(self, **kwargs):
+	def processMRZ(self, files, **kwargs):
 		return self._postfile('processMRZ', files, **kwargs).pop()
 
 	def getTaskStatus(self, **kwargs):
